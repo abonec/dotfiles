@@ -1,0 +1,2 @@
+export PATH=$PATH:/opt/sublime
+export PATH=$PATH:~/bin/scripts

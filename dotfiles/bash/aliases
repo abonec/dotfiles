@@ -1,0 +1,55 @@
+# Hardware
+alias battery_consuming='cat /proc/acpi/battery/BAT0/state | grep "present rate"'
+alias optimus_usage='lspci -vnnn | grep VGA'
+alias external_monitor='xrandr --output VGA1 --mode 1280x1024'
+
+
+# SSH
+alias stage='ssh root@sgamer.ru'
+alias estage='ssh root@esgamer.ru'
+alias stage_restart='stage restart'
+
+# Editors
+alias si='sublime_text . &'
+alias s='sublime_text'
+alias open_gems='sublime_text `rvm gemset dir`'/gems/''
+
+# Git
+alias g='git status'
+function gg {
+	git commit -v -am "$*"
+}
+# update all repos in current dirrectory recursively (with limited depth)
+function git_pull_all {
+	cur=`pwd`
+	for dir in `find "." -maxdepth 4 -type d -name ".git" | grep -E '^.(\w|\d|([_\/\-]|(^\/\.git)))*' -o`
+	do
+		echo $dir
+		cd $dir && git pull && cd $cur
+	done
+	cd $cur
+}
+
+# Bash and so on
+alias breload='source ~/.bashrc'
+alias bash_edit='vim ~/.bashrc'
+alias bash_aliases_edit='vim ~/.bash_aliases'
+
+# Navigating
+alias tmp_folder='cd /tmp'
+alias la='ls -lA'
+alias cdd='cd -'
+alias get_current_size="du -h | tail -n 1"
+
+
+#temp
+
+function compile_this {
+	slimrb index.slim index.html -p
+	coffee -o compiled/ -c *.coffee
+	sass main.sass compiled/main.css
+}
+function compile_mg {
+	sass public/stylesheets/sass/mg_2.sass public/stylesheets/mg_2.css
+	coffee -o public/javascripts/ -c public/javascripts/coffee/*.coffee
+}
