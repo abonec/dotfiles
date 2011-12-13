@@ -15,7 +15,7 @@ alias s='sublime_text'
 alias open_gems='sublime_text `rvm gemset dir`'/gems/''
 
 # Git
-alias g='git status'
+alias gs='git status'
 function gg {
 	git commit -v -am "$*"
 }
