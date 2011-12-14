@@ -1,0 +1,6 @@
+if [[ $UID != 0 ]]; then
+    sudo $0 $
+    exit 1
+fi
+sudo insmod /home/abonec/repos/other/acpi_call/acpi_call.ko
+echo '\_SB.PCI0.PEG0.GFX0.DOFF' > /proc/acpi/call

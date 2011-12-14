@@ -14,6 +14,10 @@ alias si='sublime_text . &'
 alias s='sublime_text'
 alias open_gems='sublime_text `rvm gemset dir`'/gems/''
 
+function st {
+	sublime_text $* &
+}
+
 # Git
 alias gs='git status'
 function gg {
@@ -30,6 +34,14 @@ function git_pull_all {
 	cd $cur
 }
 
+# Ruby
+
+alias rc='rails console'
+alias pst='passenger start'
+function rak {
+	bundle exec rake $*
+}
+
 # Bash and so on
 alias breload='source ~/.bashrc'
 alias bash_edit='vim ~/.bashrc'
@@ -44,12 +56,20 @@ alias get_current_size="du -h | tail -n 1"
 
 #temp
 
-function compile_this {
-	slimrb index.slim index.html -p
-	coffee -o compiled/ -c *.coffee
-	sass main.sass compiled/main.css
-}
+# function compile_this {
+# 	slimrb index.slim index.html -p
+# 	coffee -o compiled/ -c *.coffee
+# 	sass main.sass compiled/main.css
+# }
 function compile_mg {
 	sass public/stylesheets/sass/mg_2.sass public/stylesheets/mg_2.css
 	coffee -o public/javascripts/ -c public/javascripts/coffee/*.coffee
+}
+
+function watch_sass {
+	sass --watch public/stylesheets/sass/mg_2.sass:public/stylesheets/mg_2.css
+}
+
+function watch_coffee {
+	coffee --watch -o public/javascripts/ -c public/javascripts/coffee/*.coffee
 }
