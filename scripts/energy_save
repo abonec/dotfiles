@@ -1,6 +1,12 @@
 #! /bin/bash
 # power adjustments for maximum battery life on ASUS U36SD notebook
 # crysman(c)2011-10
+# version 1.01
+
+#changelog:
+#1.01 + remount / and /home with relatime option added
+# * ntp part updated to not perform ntpdate when no Internet connection available
+
 
 echo ">>This script is originally written for ASUS U36SD notebooks, using kernel 3.0.0-12."
 echo ">>I highly reccommend to boot with i915.i915_enable_rc6=1 option, it saves a lot of Watts and puts system temperature back to normal level (50°) as with 2.6.38-12 kernel."
@@ -14,19 +20,19 @@ NTPSERVER='ntp.ubuntu.com'
 
 #------------------------------------- functions()
 function OK() {
-	if [ "$1" != "" ]; then 	
-		echo -e "\e[1;32m  OK\e[0m ($1)"
-	else
-		echo -e "\e[1;32m  OK\e[0m"
-	fi
+  if [ "$1" != "" ]; then
+    echo -e "\e[1;32m  OK\e[0m ($1)"
+  else
+    echo -e "\e[1;32m  OK\e[0m"
+  fi
 }
 
 function ERR(){
-	if [ "$1" != "" ]; then
-		echo -e "\e[1;31m  FAIL\e[0m ($1)"
-	else
-		echo -e "\e[1;31m  FAIL\e[0m"
-	fi
+  if [ "$1" != "" ]; then
+    echo -e "\e[1;31m  FAIL\e[0m ($1)"
+  else
+    echo -e "\e[1;31m  FAIL\e[0m"
+  fi
 }
 
 function showexitstatus(){
@@ -42,11 +48,11 @@ function showexitstatus(){
 #laptop_mode
 echo ">>checking if laptop_mode is activated..."
 if [ `cat /proc/sys/vm/laptop_mode` -eq 5 ]; then
-	OK "already set to 5, nothing to do here"
+  OK "already set to 5, nothing to do here"
 else
-	ERR "not activated, setting it to 5..."
-	sudo sh -c 'echo 5 > /proc/sys/vm/laptop_mode'
-	showexitstatus
+  ERR "not activated, setting it to 5..."
+  sudo sh -c 'echo 5 > /proc/sys/vm/laptop_mode'
+  showexitstatus
 fi
 
 #audio
@@ -69,11 +75,11 @@ showexitstatus
 #dedicated graphic card
 echo ">>switching off the Nvidia dedicated card..."
 if lsmod | grep '^acpi_call' > /dev/null; then
-	OK "acpi_call.ko already present in kernel, not inserting"
+  OK "acpi_call.ko already present in kernel, not inserting"
 else
-	echo "  >>inserting acpi_call.ko into kernel"	
-	sudo insmod $ACPI_CALL_DIR/acpi_call.ko
-	showexitstatus
+  echo "  >>inserting acpi_call.ko into kernel"
+  sudo insmod $ACPI_CALL_DIR/acpi_call.ko
+  showexitstatus
 fi
 sudo $ACPI_CALL_DIR/test_off.sh
 showexitstatus
@@ -89,13 +95,21 @@ echo ">>enabling multi-threading sheduler"
 sudo sh -c "echo 1 > /sys/devices/system/cpu/sched_mc_power_savings"
 showexitstatus
 
-#harddisk tweaks
+#harddisk and filesystem tweaks
 echo ">>setting up the SATA link Power management to min_power..."
 sudo sh -c 'for i in /sys/class/scsi_host/host*/link_power_management_policy; do echo min_power > $i; done'
 showexitstatus
 
 echo ">>reducing dirty page (VM) writebacks to 1500cs..."
 sudo sh -c 'echo 1500 > /proc/sys/vm/dirty_writeback_centisecs'
+showexitstatus
+
+echo ">>remounting with relatime..."
+echo "  /"
+sudo mount -o remount,relatime /
+showexitstatus
+echo "  /home"
+sudo mount -o remount,relatime /home
 showexitstatus
 
 #autosuspend devices
@@ -113,9 +127,15 @@ showexitstatus
 
 #ntpd
 echo ">>syncing system time and stopping ntpd..."
-sudo service ntp stop
-sudo ntpdate $NTPSERVER
-showexitstatus
+if sudo service ntp stop 2> /dev/null; then
+  if ping $NTPSERVER -c 1 > /dev/null 2>&1; then
+    sudo ntpdate $NTPSERVER
+  fi
+  showexitstatus
+else
+  OK "NTP has been not running, no changes needed"
+fi
+
 
 #networking
 echo ">>activate wireless power saving mode with 500ms..."

@@ -1,0 +1,12 @@
+#!/bin/bash
+if [[ $UID != 0 ]]; then
+    sudo $0 $
+    exit 1
+fi
+service bluetooth stop
+rmmod btusb
+rmmod ath3k
+modprobe -a ath3k
+echo "13d3 3304" > /sys/bus/usb/drivers/ath3k/new_id
+modprobe btusb
+service bluetooth start

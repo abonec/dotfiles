@@ -1,3 +1,7 @@
+# System
+alias proc='ps aux| grep'
+alias go='gnome-open'
+
 # Hardware
 alias battery_consuming='cat /proc/acpi/battery/BAT0/state | grep "present rate"'
 alias optimus_usage='lspci -vnnn | grep VGA'
@@ -6,16 +10,15 @@ alias external_monitor='xrandr --output VGA1 --mode 1280x1024'
 
 # SSH
 alias stage='ssh root@sgamer.ru'
-alias estage='ssh root@esgamer.ru'
 alias stage_restart='stage restart'
 
 # Editors
-alias si='sublime_text . &'
-alias s='sublime_text'
-alias open_gems='sublime_text `rvm gemset dir`'/gems/''
+alias s='sublime-text-2'
+alias si='s . &'
+alias open_gems='s `rvm gemset dir`'/gems/' &'
 
 function st {
-	sublime_text $* &
+	s $* &
 }
 
 # Git
@@ -26,20 +29,30 @@ function gg {
 # update all repos in current dirrectory recursively (with limited depth)
 function git_pull_all {
 	cur=`pwd`
-	for dir in `find "." -maxdepth 4 -type d -name ".git" | grep -E '^.(\w|\d|([_\/\-]|(^\/\.git)))*' -o`
-	do
-		echo $dir
-		cd $dir && git pull && cd $cur
-	done
+	find . -type d -name .git -exec sh -c "cd \"{}\"/../ && pwd && git pull" \;
 	cd $cur
 }
 
 # Ruby
 
-alias rc='rails console'
-alias pst='passenger start'
+function rc {
+	if [ -e "./script/console" ]; then
+		script/console
+	else
+		rails console
+	fi
+}
+alias pst='passenger start --max-pool-size 3'
 function rak {
 	bundle exec rake $*
+}
+
+function change_branch {
+	echo "$*" > config/deploy/staging_branch
+}
+
+function show_branch	 {
+	cat config/deploy/staging_branch
 }
 
 # Bash and so on
@@ -54,7 +67,7 @@ alias cdd='cd -'
 alias get_current_size="du -h | tail -n 1"
 
 
-#temp
+#temporary
 
 # function compile_this {
 # 	slimrb index.slim index.html -p
