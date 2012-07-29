@@ -1,3 +1,5 @@
 export PATH=$PATH:/opt/sublime
 export PATH=$PATH:~/bin/scripts
 export PATH=$PATH:/opt/ruby_mine/bin
+export PATH=$PATH:$HOME/.cabal/bin
+export EDITOR=gvim
