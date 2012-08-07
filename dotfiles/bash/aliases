@@ -9,8 +9,6 @@ alias external_monitor='xrandr --output VGA1 --mode 1280x1024'
 
 
 # SSH
-alias stage='ssh root@sgamer.ru'
-alias stage_restart='stage restart'
 
 # Editors
 alias s='sublime-text-2'
@@ -80,7 +78,7 @@ function compile_mg {
 }
 
 function watch_sass {
-	sass --watch public/stylesheets/sass/mg_2.sass:public/stylesheets/mg_2.css
+	sass --watch public/stylesheets/sass/clan_wars.sass:public/stylesheets/clan_wars.css
 }
 
 function watch_coffee {
