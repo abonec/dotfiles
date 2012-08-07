@@ -1,3 +1,4 @@
 export PATH=$PATH:/opt/sublime
 export PATH=$PATH:~/bin/scripts
 export PATH=$PATH:/opt/ruby_mine/bin
+export BUNDLER_EDITOR=gvim
