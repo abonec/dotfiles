@@ -45,14 +45,6 @@ function rak {
 	bundle exec rake $*
 }
 
-function change_branch {
-	echo "$*" > config/deploy/staging_branch
-}
-
-function show_branch	 {
-	cat config/deploy/staging_branch
-}
-
 # Bash and so on
 alias breload='source ~/.bashrc'
 alias bash_edit='vim ~/.bashrc'
@@ -63,24 +55,3 @@ alias tmp_folder='cd /tmp'
 alias la='ls -lA'
 alias cdd='cd -'
 alias get_current_size="du -h | tail -n 1"
-
-
-#temporary
-
-# function compile_this {
-# 	slimrb index.slim index.html -p
-# 	coffee -o compiled/ -c *.coffee
-# 	sass main.sass compiled/main.css
-# }
-function compile_mg {
-	sass public/stylesheets/sass/mg_2.sass public/stylesheets/mg_2.css
-	coffee -o public/javascripts/ -c public/javascripts/coffee/*.coffee
-}
-
-function watch_sass {
-	sass --watch public/stylesheets/sass/clan_wars.sass:public/stylesheets/clan_wars.css
-}
-
-function watch_coffee {
-	coffee --watch -o public/javascripts/ -c public/javascripts/coffee/*.coffee
-}
