@@ -1,0 +1,8 @@
+function jbuild {
+  base="${1%.*}"
+  javac *.java
+  jar cfe ${base}.jar ${base} *.class
+  if [ -z $2 ]; then
+    java -jar ${base}.jar
+  fi
+}
