@@ -20,10 +20,35 @@ function st {
 }
 
 # Git
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
 alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gpu='git pull'
+alias gcl='git clone'
 function gg {
 	git commit -v -am "$*"
 }
+function deploy_branch {
+  current_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+  branch=$current_branch
+  # if [ -z "$2" ] ; then
+  #   branch=$2
+  # else
+  #   branch=$current_branch
+  # fi
+  # echo $branch
+  cap -s branch=$branch $1 deploy
+}
+
 # update all repos in current dirrectory recursively (with limited depth)
 function git_pull_all {
 	cur=`pwd`
