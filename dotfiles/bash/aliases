@@ -1,6 +1,6 @@
 # System
 alias proc='ps aux| grep'
-alias go='gnome-open'
+alias gopen='gnome-open'
 
 # Hardware
 alias battery_consuming='cat /proc/acpi/battery/BAT0/state | grep "present rate"'

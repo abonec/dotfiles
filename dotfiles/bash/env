@@ -4,3 +4,5 @@ export PATH=$PATH:/opt/ruby_mine/bin
 export BUNDLER_EDITOR=gvim
 export PATH=$PATH:$HOME/.cabal/bin
 export EDITOR=gvim
+export GOROOT=$HOME/go
+export PATH=$PATH:$GOROOT/bin
