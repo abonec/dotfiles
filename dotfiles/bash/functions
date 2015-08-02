@@ -30,3 +30,19 @@ function cleanswap {
     fi
   done
 }
+
+function display_screen 
+{
+  if [[ "$1" == "on" ]]; then
+    case $2 in
+    home)
+      MODE=1280x1024
+      ;;
+    *)
+      MODE=1920x1080
+    esac
+    xrandr --output HDMI1 --mode $MODE --right-of LVDS1
+  else
+    xrandr --output HDMI1 --off
+  fi
+}

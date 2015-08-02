@@ -2,3 +2,9 @@ export PATH=$PATH:../scripts/scripts
 export BUNDLER_EDITOR=gvim
 export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
+ZSH_THEME="robbyrussell"
+
+
+if [ -n "$SSH_CLIENT" ]; then
+  export PS1=$PS1"%{$fg_bold[blue]%}~ssh: %{$reset_color%}"
+fi
