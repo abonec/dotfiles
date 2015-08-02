@@ -13,5 +13,6 @@ if [ $# -eq 0 ]
       ln -s "$dotfiles_dir/i3" $i3configlink
     fi
     echo "source $dotfiles_dir/dotfiles/indexrc" >> $1
+    echo "installed..."
 fi
 
