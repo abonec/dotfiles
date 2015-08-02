@@ -1,13 +1,3 @@
-function jbuild {
-  base="${1%.*}"
-  javac *.java
-  jar cfe ${base}.jar ${base} *.class
-  if [ -z $2 ]; then
-    java -jar ${base}.jar
-  fi
-}
-
-
 function cleanswap {
   TMPDIR=$(mktemp -d) || exit 1
   RECTXT="$TMPDIR/vim.recovery.$USER.txt"

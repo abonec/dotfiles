@@ -8,32 +8,13 @@ alias optimus_usage='lspci -vnnn | grep VGA'
 alias external_monitor='xrandr --output VGA1 --mode 1280x1024'
 
 
-# SSH
-
-# Editors
-alias s='sublime-text-2'
-alias si='s . &'
-alias open_gems='s `rvm gemset dir`'/gems/' &'
-
-function st {
-	s $* &
-}
-
 # Git
-alias ga='git add'
-alias gp='git push'
-alias gl='git log'
 alias gs='git status'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gm='git commit -m'
-alias gma='git commit -am'
-alias gb='git branch'
-alias gc='git checkout'
 alias gra='git remote add'
 alias grr='git remote rm'
 alias gpu='git pull'
-alias gcl='git clone'
 function gg {
 	git commit -v -am "$*"
 }
@@ -49,34 +30,5 @@ function deploy_branch {
   cap -s branch=$branch $1 deploy
 }
 
-# update all repos in current dirrectory recursively (with limited depth)
-function git_pull_all {
-	cur=`pwd`
-	find . -type d -name .git -exec sh -c "cd \"{}\"/../ && pwd && git pull" \;
-	cd $cur
-}
-
-# Ruby
-
-function rc {
-	if [ -e "./script/console" ]; then
-		script/console $1
-	else
-		rails console $1
-	fi
-}
-alias pst='passenger start --max-pool-size 3'
-function rak {
-	bundle exec rake $*
-}
-
-# Bash and so on
-alias breload='source ~/.bashrc'
-alias bash_edit='vim ~/.bashrc'
-alias bash_aliases_edit='vim ~/.bash_aliases'
-
 # Navigating
-alias tmp_folder='cd /tmp'
-alias la='ls -lA'
-alias cdd='cd -'
 alias get_current_size="du -h | tail -n 1"

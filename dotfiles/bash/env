@@ -1,8 +1,4 @@
-export PATH=$PATH:/opt/sublime
-export PATH=$PATH:~/bin/scripts
-export PATH=$PATH:/opt/ruby_mine/bin
+export PATH=$PATH:../scripts/scripts
 export BUNDLER_EDITOR=gvim
-export PATH=$PATH:$HOME/.cabal/bin
-export EDITOR=gvim
 export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin

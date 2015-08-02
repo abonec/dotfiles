@@ -1,0 +1,6 @@
+indexrc_dir="$(realpath "$0")"
+dotfiles_dir="$(dirname "$indexrc_dir")"
+source "$dotfiles_dir/bash/env"
+source "$dotfiles_dir/bash/config"
+source "$dotfiles_dir/bash/aliases"
+source "$dotfiles_dir/bash/functions"

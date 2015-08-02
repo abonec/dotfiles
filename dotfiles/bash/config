@@ -1,4 +1,0 @@
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-. ~/bin/scripts/g.sh
-export PS1="\[\e[1;30m\]\w\[\e[m\]\$(vcprompt -d 2 -f '(\[\e[0;31m\]%m%u\[\e[m\]\[\e[0;32m\]%b\[\e[m\])')$ "
