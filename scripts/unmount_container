@@ -1,0 +1,2 @@
+sudo umount /dev/mapper/container
+sudo cryptsetup luksClose /dev/mapper/container

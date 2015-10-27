@@ -1,7 +1,9 @@
-export PATH=$PATH:../scripts/scripts
+scripts_path="$(realpath "$dotfiles_dir/../scripts")"
+export PATH=$PATH:$scripts_path
 export BUNDLER_EDITOR=gvim
 export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:/opt/elixir/bin
 ZSH_THEME="robbyrussell"
 
 

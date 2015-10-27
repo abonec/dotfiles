@@ -1,0 +1,3 @@
+sudo cryptsetup luksOpen /home/abonec/.private/container.crt container
+sudo mount /dev/mapper/container /home/abonec/private
+#sudo chown -hR abonec:abonec /home/abonec/private
