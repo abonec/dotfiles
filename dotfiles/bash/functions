@@ -55,3 +55,14 @@ function suspend_laptop
               org.freedesktop.UPower.Suspend &
   i3lock
 }
+
+function hibernate_laptop
+{
+  dbus-send --system --print-reply \
+       --dest="org.freedesktop.UPower" \
+           /org/freedesktop/UPower \
+               org.freedesktop.UPower.Hibernate & 
+  i3lock
+
+}
+
