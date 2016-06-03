@@ -173,7 +173,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-exec "xrandr --output eDP1 --dpi 200"
+# exec "xrandr --output eDP1 --dpi 200"
 exec "dropbox start"
 exec --no-startup-id nm-applet
 exec kbdd
