@@ -1,3 +1,6 @@
 alias customers='cd ~/work/customers_zone'
 alias core='cd ~/work/crowdsystems'
 alias moderators='cd ~/work/moderation'
+alias server_core='CORE= core && rails s'
+alias server_customers='CUSTOMERS= customers && rails s -p3001'
+alias server_moderation='CUSTOMERS= moderators && rails s -p3002'
