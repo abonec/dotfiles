@@ -66,3 +66,17 @@ function hibernate_laptop
 
 }
 
+function 4k_resolution
+{
+  xrandr --output eDP1 --mode 3840x2160 --dpi 228
+  gsettings set org.gnome.desktop.interface scaling-factor 2
+  i3-msg restart
+}
+
+function fullhd_resolution
+{
+  xrandr --output eDP1 --mode 1920x1080 --dpi 100
+  gsettings set org.gnome.desktop.interface scaling-factor 1
+  i3-msg restart
+}
+  
