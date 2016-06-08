@@ -1,0 +1,3 @@
+alias customers='cd ~/work/customers_zone'
+alias core='cd ~/work/crowdsystems'
+alias moderators='cd ~/work/moderation'
