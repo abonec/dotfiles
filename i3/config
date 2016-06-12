@@ -153,7 +153,7 @@ focus_follows_mouse no
 bar {
         # status_command py3status -c ~/.i3/i3status.conf -i ~/.i3/modules/
         status_command i3blocks -c ~/.i3/i3blocks.conf
-        font pango:Source Code Pro for Powerline 11
+        font pango:Source Code Pro for Powerline 9
 }
 
 bindsym $mod+m move workspace to output left
