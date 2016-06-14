@@ -34,3 +34,6 @@ function deploy_branch {
 
 # Navigating
 alias get_current_size="du -h | tail -n 1"
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
