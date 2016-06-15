@@ -7,4 +7,7 @@ alias server_moderation='MODERATION= moderators && rails s -p3002'
 alias console_customer='CUSTOMERS= customers && rails c'
 alias console_core='CORE= core && rails c'
 alias console_moderation='MODERATION= moderators && rails c'
-alias deploy_dev='git push -f dokku-dev HEAD:master'
+function deploy_dev {
+  git push -f dokku-dev HEAD:master
+  notify-send -u critical -i file-roller -t 30000 DEPLOYMENT complete
+}
