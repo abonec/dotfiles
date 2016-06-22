@@ -10,6 +10,7 @@ alias server_topmission='TOPMISSION= cd_topmission && rails s -p3003'
 alias console_customer='CUSTOMERS= cd_customers && rails c'
 alias console_core='CORE= cd_core && rails c'
 alias console_moderation='MODERATION= cd_moderators && rails c'
+alias console_topmission='TOPMISSION= cd_topmission && rails c'
 function deploy_dev {
   git push -f dokku-dev HEAD:master
   notify-send -u critical -i file-roller -t 30000 DEPLOYMENT complete
