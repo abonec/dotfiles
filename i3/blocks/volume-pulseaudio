@@ -94,7 +94,7 @@ function print_format {
     [[ $USE_PERCENT == 0 ]] && PERCENT=""
     case "$1" in
         1) echo "$SYMBOL$VOL$PERCENT [$NAME]" ;;
-        2) echo "$SYMBOL$VOL$PERCENT [$INDEX]";;
+        2) echo "$VOL$PERCENT [$INDEX]";;
         3) echo "$SYMBOL$VOL$PERCENT" ;;
         *) echo "$SYMBOL$VOL$PERCENT [$INDEX:$NAME]" ;;
     esac
