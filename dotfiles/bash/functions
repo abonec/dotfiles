@@ -79,4 +79,13 @@ function fullhd_resolution
   gsettings set org.gnome.desktop.interface scaling-factor 1
   i3-msg restart
 }
+
+function touchpad_disable
+{
+  xinput set-prop $(xinput | grep Touchscreen | ruby -e 'puts STDIN.read.split("\n").first[/id=(\d*)/,1]') "Device Enabled" 0
+}
   
+function touchpad_enable
+{
+  xinput set-prop $(xinput | grep Touchscreen | ruby -e 'puts STDIN.read.split("\n").first[/id=(\d*)/,1]') "Device Enabled" 1
+}
