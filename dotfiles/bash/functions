@@ -80,12 +80,12 @@ function fullhd_resolution
   i3-msg restart
 }
 
-function touchpad_disable
+function touchscreen_disable
 {
   xinput set-prop $(xinput | grep Touchscreen | ruby -e 'puts STDIN.read.split("\n").first[/id=(\d*)/,1]') "Device Enabled" 0
 }
   
-function touchpad_enable
+function touchscreen_enable
 {
   xinput set-prop $(xinput | grep Touchscreen | ruby -e 'puts STDIN.read.split("\n").first[/id=(\d*)/,1]') "Device Enabled" 1
 }
