@@ -164,8 +164,8 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5% #decrease sound
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -175,8 +175,13 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 # exec "xrandr --output eDP1 --dpi 200"
-exec "dropbox start"
 exec --no-startup-id nm-applet
 exec kbdd
 exec "setxkbmap -option -option 'grp:caps_toggle,grp:shifts_toggle' -layout 'us,ru'"
 exec gnome-settings-daemon
+exec "syndaemon -i .5 -K -R -t -d"
+
+
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
